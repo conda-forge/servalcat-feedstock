@@ -54,10 +54,10 @@ requirements:
   host:
     - eigen >=3.4.0
     - gemmi ==0.7.4
-    - nanobind ==2.9.2
+    - nanobind
     - pip
     - python ${{ python }}
-    - scikit-build-core ==0.11.6
+    - scikit-build-core
   run:
     - ${{ pin_compatible("gemmi", upper_bound='x.x.x') }}
     - numpy >=1.15
