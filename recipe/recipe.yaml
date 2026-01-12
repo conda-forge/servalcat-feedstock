@@ -70,8 +70,8 @@ requirements:
 
 tests:
   - script:
-      - python -m servalcat --version
-      - python -m servalcat --help
+      - servalcat --version
+      - servalcat --help
       - python tests/test_for_ci.py
     files:
       source:
