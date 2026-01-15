@@ -16,7 +16,7 @@ build:
     - if: unix
       then: |
         set -exo pipefail
-        export CMAKE_GENERATOR=Ninja
+        #export CMAKE_GENERATOR=Ninja
         mkdir -p ${PREFIX}/bin
         rm -rf eigen/  # Remove bundled eigen to use the conda package
         ${PYTHON} -m pip install . \
@@ -30,7 +30,7 @@ build:
     - if: win
       then: |
         @echo on
-        set "CMAKE_GENERATOR=Ninja"
+        REM set "CMAKE_GENERATOR=Ninja"
         REM sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
         mkdir %PREFIX%\Scripts
         rmdir /s /q eigen
