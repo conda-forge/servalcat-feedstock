@@ -31,7 +31,7 @@ build:
       then: |
         @echo on
         REM set "CMAKE_GENERATOR=Ninja"
-        REM sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
+        sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
         mkdir %PREFIX%\Scripts
         rmdir /s /q eigen
         %PYTHON% -m pip install . ^
