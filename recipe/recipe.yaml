@@ -16,7 +16,6 @@ build:
     - if: unix
       then: |
         set -exo pipefail
-        #export CMAKE_GENERATOR=Ninja
         mkdir -p ${PREFIX}/bin
         rm -rf eigen/  # Remove bundled eigen to use the conda package
         ${PYTHON} -m pip install . \
@@ -30,16 +29,20 @@ build:
     - if: win
       then: |
         @echo on
-        REM set "CMAKE_GENERATOR=Ninja"
         sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
+        if errorlevel 1 exit 1
         mkdir %PREFIX%\Scripts
+        if errorlevel 1 exit 1
         rmdir /s /q eigen
+        if errorlevel 1 exit 1
         %PYTHON% -m pip install . ^
           -vv ^
           --no-deps ^
           --no-build-isolation ^
           --config-settings="cmake.args=-DPYTHON_INSTALL_DIR=%SP_DIR%"
+        if errorlevel 1 exit 1
         copy %RECIPE_DIR%\post-link.bat %PREFIX%\Scripts\.%PKG_NAME%-post-link.bat
+        if errorlevel 1 exit 1
 
 requirements:
   build:
@@ -47,13 +50,10 @@ requirements:
     - ${{ compiler("cxx") }}
     - ${{ stdlib("c") }}
     - cmake
-    - ninja
     - if: unix
       then: make
     - if: win
-      then:
-        - m2-sed
-        #- jom
+      then: m2-sed
     - if: build_platform != target_platform
       then:
         - python
