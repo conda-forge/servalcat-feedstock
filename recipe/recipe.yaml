@@ -12,12 +12,10 @@ source:
 
 build:
   number: 1
-  script:
-    - sed -i.bak 's@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@' CMakeLists.txt
-    - rm CMakeLists.txt.bak
-    
+  script:    
     - if: unix
       then: |
+        set -exo pipefail
         mkdir -p ${PREFIX}/bin
         rm -rf eigen/  # Remove bundled eigen to use the conda package
         ${PYTHON} -m pip install . \
@@ -30,6 +28,8 @@ build:
 
     - if: win
       then: |
+        @echo on
+        sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
         set "CMAKE_GENERATOR=NMake Makefiles JOM"
         mkdir %PREFIX%\Scripts
         rmdir /s /q eigen
