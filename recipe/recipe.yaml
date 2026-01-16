@@ -30,6 +30,7 @@ build:
       then: |
         @echo on
         @REM sed -i.bak "s@#set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@set(CMAKE_INSTALL_BINDIR "${SKBUILD_SCRIPTS_DIR}")@" CMakeLists.txt
+        set CMAKE_ARGS=%CMAKE_ARGS: =;%
         if errorlevel 1 exit 1
         if not exist "%PREFIX%\Scripts" mkdir "%PREFIX%\Scripts"
         if errorlevel 1 exit 1
@@ -37,7 +38,9 @@ build:
         if errorlevel 1 exit 1
         %PYTHON% -m pip install . ^
           -vv ^
-          --config-settings="cmake.args=-DPYTHON_INSTALL_DIR=%SP_DIR%"
+          --no-deps ^
+          --no-build-isolation ^
+          --config-settings="cmake.args=%CMAKE_ARGS%;-DPYTHON_INSTALL_DIR=%SP_DIR%"
         if errorlevel 1 exit 1
         copy %RECIPE_DIR%\post-link.bat %PREFIX%\Scripts\.%PKG_NAME%-post-link.bat
         if errorlevel 1 exit 1
