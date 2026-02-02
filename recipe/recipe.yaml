@@ -1,6 +1,6 @@
 context:
   name: servalcat
-  version: "0.4.128"
+  version: "0.4.131"
 
 package:
   name: ${{ name }}
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: c489767ff7ffbb1a856b7341bdcdb6ccd246b92c2f296436933f2d291360b29a
+  sha256: d4300bfba939b0f3592c71b905c8d9cb398ed4bdc4069e4f1c3ac0c6bef06eb0
 
 build:
-  number: 3
+  number: 0
   python:
     # NOTE!
     # On Windows, installing via pip hardcodes the Python path used during build time into executables (*.exe)
@@ -19,7 +19,7 @@ build:
     entry_points:
       - servalcat = servalcat.__main__:main
       - refmacat = servalcat.refmac.refmac_wrapper:command_line
-  
+
   script:
     - if: unix
       then: |
