@@ -67,6 +67,7 @@ requirements:
     - python ${{ python }}
     - scikit-build-core
   run:
+    - ${{ pin_compatible("gemmi", exact=True) }}
     - numpy >=1.15
     - omegaconf ==2.3.0
     - packaging
