@@ -62,7 +62,7 @@ requirements:
   host:
     - eigen <4.0.0a0
     - gemmi ==0.7.4
-    - nanobind
+    - nanobind ==2.12.0
     - pip
     - python ${{ python }}
     - scikit-build-core
