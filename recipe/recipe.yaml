@@ -62,14 +62,10 @@ requirements:
   host:
     - eigen <4.0.0a0
     - gemmi ==0.7.4
-    - nanobind ==2.9.2
+    - nanobind ==2.10.2
     - pip
     - python ${{ python }}
     - scikit-build-core ==0.11.6
-    - if: linux
-      then:
-        - libstdcxx >=14,<15
-        - libgcc >=14,<15
   run:
     - ${{ pin_compatible("gemmi", exact=True) }}
     - numpy >=1.15
@@ -78,10 +74,6 @@ requirements:
     - pandas >=1.1.0
     - python ${{ python }}
     - scipy
-    - if: linux
-      then:
-        - libstdcxx >=14,<15
-        - libgcc >=14,<15
   run_exports: []  # No shared libraries to worry about
 
 tests:
