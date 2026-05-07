@@ -11,7 +11,7 @@ source:
   sha256: d4300bfba939b0f3592c71b905c8d9cb398ed4bdc4069e4f1c3ac0c6bef06eb0
 
 build:
-  number: 0
+  number: 1
   python:
     # NOTE!
     # On Windows, installing via pip hardcodes the Python path used during build time into executables (*.exe)
