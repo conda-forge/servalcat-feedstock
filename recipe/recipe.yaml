@@ -61,11 +61,11 @@ requirements:
         - cross-python_${{ target_platform }}
   host:
     - eigen <4.0.0a0
-    - gemmi ==0.7.4
-    - nanobind ==2.10.2
+    - gemmi ==0.7.5
+    - nanobind ==2.12.0
     - pip
     - python ${{ python }}
-    - scikit-build-core ==0.11.6
+    - scikit-build-core ==0.12.1
   run:
     - ${{ pin_compatible("gemmi", exact=True) }}
     - numpy >=1.15
